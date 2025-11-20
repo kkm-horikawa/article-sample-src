@@ -1,0 +1,104 @@
+[project]
+name = "todo-backend"
+version = "0.1.0"
+description = "Sample TODO API for testing article"
+requires-python = ">=3.11"
+dependencies = [
+    "django>=5.2.8",
+    "djangorestframework>=3.16.1",
+    "drf-spectacular>=0.29.0",
+    "pandas>=2.2.3",
+    "pyarrow>=19.0.0",
+    "django-cors-headers>=4.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-django>=4.9.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.14.4",
+    "pyright>=1.1.407",
+    "pre-commit>=4.4.0",
+    "django-stubs>=5.2.7",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["api", "config"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+testpaths = ["api/tests"]
+addopts = [
+    "--verbose",
+    "--strict-markers",
+    "--tb=short",
+    "--maxfail=5",
+    "-p", "no:warnings",
+]
+markers = [
+    "django_db: mark test to use django database",
+    "slow: mark test as slow running",
+    "snapshot: mark test as snapshot/golden data test",
+]
+
+[tool.coverage.run]
+source = ["api"]
+omit = [
+    "*/tests/*",
+    "*/migrations/*",
+    "*/conftest.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+extend-exclude = ["migrations"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["api", "config"]
+
+[tool.pyright]
+include = ["api", "config"]
+exclude = ["**/migrations", "**/__pycache__"]
+typeCheckingMode = "basic"
+pythonVersion = "3.11"
+pythonPlatform = "Linux"
+reportMissingTypeStubs = false
+reportOptionalMemberAccess = false
+reportOptionalCall = false
+reportOptionalIterable = false
+reportOptionalContextManager = false
+reportOptionalOperand = false
+reportOptionalSubscript = false
+reportArgumentType = false
+reportAttributeAccessIssue = false
