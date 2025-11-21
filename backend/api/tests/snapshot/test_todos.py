@@ -111,7 +111,8 @@ class TestTodoSnapshotsGoodExamples:
 
         【何を保証するか】
         - ステータスコードが200であること
-        - completed=true でフィルタされたレスポンスデータが todos_completed.parquet と一致すること
+        - completed=true でフィルタされたレスポンスデータが
+          todos_completed.parquet と一致すること
         - 完了済みTODOのみが返されること
 
         【テスト手順】
@@ -143,7 +144,8 @@ class TestTodoSnapshotsGoodExamples:
 
         【何を保証するか】
         - ステータスコードが200であること
-        - priority=high でフィルタされたレスポンスデータが todos_high_priority.parquet と一致すること
+        - priority=high でフィルタされたレスポンスデータが
+          todos_high_priority.parquet と一致すること
         - 高優先度TODOのみが返されること
 
         【テスト手順】

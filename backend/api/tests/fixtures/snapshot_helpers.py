@@ -115,9 +115,9 @@ class SnapshotComparator:
             if field in golden_df.columns:
                 golden_df = golden_df.drop(columns=[field])
 
-        assert len(actual_df) == len(
-            golden_df
-        ), f"Row count mismatch: expected {len(golden_df)}, got {len(actual_df)}"
+        assert len(actual_df) == len(golden_df), (
+            f"Row count mismatch: expected {len(golden_df)}, got {len(actual_df)}"
+        )
 
         assert list(actual_df.columns) == list(golden_df.columns), (
             f"Column mismatch: expected {list(golden_df.columns)}, "

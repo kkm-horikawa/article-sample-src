@@ -9,12 +9,12 @@ import TodoItem from "./TodoItem";
  * TODOリストのプロパティ
  */
 interface TodoListProps {
-  /** 表示するTODOの配列 */
-  todos: Todo[];
-  /** 完了状態切り替え時のコールバック関数 */
-  onToggle: (id: number) => void;
-  /** 削除時のコールバック関数 */
-  onDelete: (id: number) => void;
+	/** 表示するTODOの配列 */
+	todos: Todo[];
+	/** 完了状態切り替え時のコールバック関数 */
+	onToggle: (id: number) => void;
+	/** 削除時のコールバック関数 */
+	onDelete: (id: number) => void;
 }
 
 /**
@@ -27,19 +27,24 @@ interface TodoListProps {
  * @returns {JSX.Element} TODOリストまたは空状態メッセージ
  */
 export default function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
-  if (todos.length === 0) {
-    return (
-      <div className="empty-state" data-testid="empty-state">
-        <p>TODOがありません</p>
-      </div>
-    );
-  }
+	if (todos.length === 0) {
+		return (
+			<div className="empty-state" data-testid="empty-state">
+				<p>TODOがありません</p>
+			</div>
+		);
+	}
 
-  return (
-    <div className="todo-list" data-testid="todo-list">
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} onToggle={onToggle} onDelete={onDelete} />
-      ))}
-    </div>
-  );
+	return (
+		<div className="todo-list" data-testid="todo-list">
+			{todos.map((todo) => (
+				<TodoItem
+					key={todo.id}
+					todo={todo}
+					onToggle={onToggle}
+					onDelete={onDelete}
+				/>
+			))}
+		</div>
+	);
 }

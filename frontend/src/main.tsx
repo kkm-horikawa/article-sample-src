@@ -13,7 +13,7 @@ import "./index.css";
 const rootElement = document.getElementById("root");
 
 if (!rootElement) {
-  throw new Error("Root element not found");
+	throw new Error("Root element not found");
 }
 
 /**
@@ -21,7 +21,7 @@ if (!rootElement) {
  * StrictMode で開発時の潜在的な問題を検出します
  */
 createRoot(rootElement).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+	<StrictMode>
+		<App />
+	</StrictMode>,
 );
